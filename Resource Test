@@ -1,14 +1,14 @@
 <html>
 <body>
 
-<button type="Button" onclick="getResource(Food)">
-Get Food
+<button type="Button" onclick="improveGathering(Food)">
+Improve Food
 </button>
-<button type="Button" onclick="getResource(Wood)">
-Get Wood
+<button type="Button" onclick="improveGathering(Wood)">
+Improve Wood
 </button>
-<button type="Button" onclick="getResource(Stone)">
-Get Stone
+<button type="Button" onclick="improveGathering(Stone)">
+Improve Stone
 </button>
 
 <p id="FoodOutput">
@@ -25,9 +25,11 @@ Stone = 0
 var Resource = function(name) 
 {
 	this.Name = name;
-	this.Value = 0
-	this.Inc = 1;
+	this.Value = 0;
+	this.Inc = 0;
 };
+
+var ticklength = 10;
 
 Resource.prototype.Add = function(amount)
 {
@@ -40,11 +42,12 @@ var Stone = new Resource("Stone");
 
 var Resources = [Food, Wood, Stone];
 
-Food.Inc = 8;
-Wood.Inc = 4;
-Stone.Inc = 3;
+var timer = setInterval(getResources, ticklength);
 
-var timer = setInterval(getResources, 1000);
+function improveGathering(res)
+{
+	res.Inc ++;
+}
 
 function getResources()
 {
@@ -56,11 +59,11 @@ function getResources()
 
 function getResource(res)
 {
-	res.Add(res.Inc);
+	res.Add(res.Inc * ticklength / 1000);
 	id = res.Name + "Output";
-	document.getElementById(id).innerHTML = res.Name + " = " + res.Value + " (+" + res.Inc + ")";
+	var resVal = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(res.Value);
+	document.getElementById(id).innerHTML = res.Name + " = " + resVal + " (+" + res.Inc + ")";
 }
-
 </script>
 
 </body>
