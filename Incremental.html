@@ -1,32 +1,64 @@
 <!DOCTYPE HTML>
 <html>
     <body>
-        <p>
+        <p id="Para">
+		a
         </p>
+		<p id="counts">
+		b
+		</p>
         <script>
-		var Era = Class({
-		initialize: function(name,Res1,Res2=null,Res3=null) {
-		// Res1-3 are the 3 possible resources of each era
-			this.name = name;
-			this.Res1 = Res1;
-			this.Res1Count = 0;
-			this.dreslist = [1]
-			if (Res2!=null) {
-				this.Res2 = Res2;
-				this.Res2Count = 0;
-				this.dreslist.push(1)
-			}
-			if (Res3!=null) {
-				this.Res3 = Res3;
-				this.Res3Count = 0;
-				this.dreslist.push(1)
-			}
-			}
-			getObject: function() {
-				
-			}
+		var Resource = function(name) 
+		{
+			this.Name = name;
+			this.Value = 0;
+			this.Inc = 1;
+		};
+		function Era(name,Res1,Res2,Res3) {
+			// Res1-3 are the 3 possible resources of each era
+				this.name = name;
+				this.dreslist = [];
+				this.Res1 = Res1;
+				this.dreslist.push(this.Res1.Inc);
+				if (Res2!=null) {
+					this.Res2 = Res2;
+					this.dreslist.push(this.Res2.Inc);
+				};
+				if (Res3!=null) {
+					this.Res3 = Res3;
+					this.dreslist.push(this.Res2.Inc);
+				};
+				this.getResource = function(name){
+					if (name == this.Res1.Name) {
+						return this.Res1;
+					}
+					else if (name == this.Res2.Name) {
+						return this.Res2;
+					}
+					else if (name == this.Res3.Name) {
+						return this.Res3;
+					}
+				};
+			};
+			Era.prototype.increment = function() {
+				this.Res1.Value += this.Res1.Inc;
+				if (this.Res2 != null) {
+				this.Res2.Value += this.Res2.Inc;
+				}
+				if (this.Res3 != null) {
+				this.Res3.Value += this.Res3.Inc;
+				}
+			};
+		var stone = new Resource("Stone");
+		var wood = new Resource("Wood");
+		var food = new Resource("Food");
+		var First = new Era("First",food,wood,stone);
+		var t = setInterval(incre,1000)
+		document.getElementById("Para").innerHTML = First.getResource("Stone").Name;
+		function incre(){
+		First.increment()
+		document.getElementById("counts").innerHTML = First.getResource("Food").Value.toString()
 		}
-		})
         </script>
     </body>
 </html>
