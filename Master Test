@@ -1,0 +1,87 @@
+<html>
+<head>
+<!-- THE RESOURCE CLASS -->
+<script type="text/javascript" src="Resource.js"></script>
+<!-- THE ERA CLASS -->
+<script type="text/javascript" src="Era.js"></script>
+
+<!-- SCRRPT -->
+<script>
+var Food = new Resource("Food", 1, 1);
+var Wood = new Resource("Wood", 0, 10);
+var Stone = new Resource("Stone", 0, 40);
+var Copper = new Resource("Copper", 0, 250);
+var Tin = new Resource("Tin", 0, 250);
+var Resources = [Food, Wood, Stone];
+
+var First = new Era("First", Food, Wood, Stone);
+var Second = new Era("Second", Copper, Tin);
+
+var ticklength = 10;
+var timer = setInterval(getResources, ticklength);
+
+function improveGathering(res, other)
+{
+	var id = res.Name + "Cost";
+	res.Upgrade(other);
+	document.getElementById(id).innerHTML = "Cost: " + res.UpgradeCost.toString();
+
+}
+function getResources()
+{
+	for(i = 0; i < 3; i++)
+	{
+		Resources[i].Gather();
+		Resources[i].Display();
+	}
+}
+
+
+</script>
+<!-- END SCRRPT -->
+
+</head>
+<body>
+<h1 align="center">AGE OF INCREMENTATION</h1>
+<table border="1" align="center">
+<tr>
+	<th align="center">Food</th>
+	<th align="center">Wood</th>
+	<th align="center">Stone</th>
+</tr>
+<tr>
+	<td id="FoodOutput" align="center" />
+	<td id="WoodOutput" align="center" />
+	<td id="StoneOutput" align="center" />
+</tr>
+<tr>
+	<td>
+		<button id="FoodButton" onclick="improveGathering(Food, Food)">
+		Gather Food <img src='http://images.clipartpanda.com/corn-clipart-corn2.png' width="20" height="20">
+		<p id="FoodCost">
+		Cost: 1
+		</p>
+		</button>
+	</td>
+	<td>
+		<button type="Button" onclick="improveGathering(Wood, Food)">
+		Gather Wood <img src='http://vignette1.wikia.nocookie.net/farmville2/images/9/9f/Wood_Plank.png/revision/latest?cb=20121112012151' width="20" height="20">
+		<p id="WoodCost">
+		Cost: 1
+		</p>
+		</button>
+	</td>
+	<td>
+		<button type="Button" onclick="improveGathering(Stone, Wood)">
+		Gather Stone <img src='http://img2.wikia.nocookie.net/__cb20130121211645/scribblenauts/images/5/5d/Pestering_Pebbles.png' width="20" height="20">
+		<p id="StoneCost">
+		Cost: 1
+		</p>
+		</button>
+	</td>
+</tr>
+</table>
+
+<p id="output"/>
+</body>
+</html>
