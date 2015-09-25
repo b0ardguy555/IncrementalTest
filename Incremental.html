@@ -4,6 +4,29 @@
         <p>
         </p>
         <script>
+		var Era = Class({
+		initialize: function(name,Res1,Res2=null,Res3=null) {
+		// Res1-3 are the 3 possible resources of each era
+			this.name = name;
+			this.Res1 = Res1;
+			this.Res1Count = 0;
+			this.dreslist = [1]
+			if (Res2!=null) {
+				this.Res2 = Res2;
+				this.Res2Count = 0;
+				this.dreslist.push(1)
+			}
+			if (Res3!=null) {
+				this.Res3 = Res3;
+				this.Res3Count = 0;
+				this.dreslist.push(1)
+			}
+			}
+			getObject: function() {
+				
+			}
+		}
+		})
         </script>
     </body>
 </html>
