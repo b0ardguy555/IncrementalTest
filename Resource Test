@@ -1,6 +1,8 @@
 <html>
 <body>
-
+<head>
+<title>Clicking through the Ages</title>
+</head>
 <table>
 <tr>
 	<th>Food</th>
@@ -15,17 +17,17 @@
 <tr>
 	<td>
 		<button type="Button" onclick="improveGathering(Food)">
-		Improve Food
+		Improve Food <img src='http://images.clipartpanda.com/corn-clipart-corn2.png' width="20" height="20">
 		</button>
 	</td>
 	<td>
 		<button type="Button" onclick="improveGathering(Wood)">
-		Improve Wood
+		Improve Wood <img src='http://vignette1.wikia.nocookie.net/farmville2/images/9/9f/Wood_Plank.png/revision/latest?cb=20121112012151' width="20" height="20">
 		</button>
 	</td>
 	<td>
 		<button type="Button" onclick="improveGathering(Stone)">
-		Improve Stone
+		Improve Stone <img src='http://img2.wikia.nocookie.net/__cb20130121211645/scribblenauts/images/5/5d/Pestering_Pebbles.png' width="20" height="20">
 		</button>
 	</td>
 </tr>
