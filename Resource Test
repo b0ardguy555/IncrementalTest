@@ -1,0 +1,67 @@
+<html>
+<body>
+
+<button type="Button" onclick="getResource(Food)">
+Get Food
+</button>
+<button type="Button" onclick="getResource(Wood)">
+Get Wood
+</button>
+<button type="Button" onclick="getResource(Stone)">
+Get Stone
+</button>
+
+<p id="FoodOutput">
+Food = 0
+</p>
+<p id="WoodOutput">
+Wood = 0
+</p>
+<p id="StoneOutput">
+Stone = 0
+</p>
+
+<script>
+var Resource = function(name) 
+{
+	this.Name = name;
+	this.Value = 0
+	this.Inc = 1;
+};
+
+Resource.prototype.Add = function(amount)
+{
+	this.Value += amount;
+}
+
+var Food = new Resource("Food");
+var Wood = new Resource("Wood");
+var Stone = new Resource("Stone");
+
+var Resources = [Food, Wood, Stone];
+
+Food.Inc = 8;
+Wood.Inc = 4;
+Stone.Inc = 3;
+
+var timer = setInterval(getResources, 1000);
+
+function getResources()
+{
+	for(i = 0; i < 3; i++)
+	{
+		getResource(Resources[i]);
+	}
+}
+
+function getResource(res)
+{
+	res.Add(res.Inc);
+	id = res.Name + "Output";
+	document.getElementById(id).innerHTML = res.Name + " = " + res.Value + " (+" + res.Inc + ")";
+}
+
+</script>
+
+</body>
+</html>
